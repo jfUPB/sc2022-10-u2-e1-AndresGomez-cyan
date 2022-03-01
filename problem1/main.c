@@ -36,6 +36,7 @@ void printArray(struct array *parr)
 
 void getArray(struct array *parr)
 {
+    //
     
 }
 
