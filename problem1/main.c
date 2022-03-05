@@ -38,11 +38,31 @@ void getArray(struct array *parr)
 {
     printf("Cantidad elementos");
     scanf("%d",&parr->size);
+
+    parr->pdata = (int *)malloc( sizeof(int) * parr->size );
+
+    for (int i = 0; i< parr->size; i++){
+        printf("Elemento[%d]: ", i );
+        scanf("%d", &parr->pdata[i]);
+    }
 }
 
 void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOut)
 {
-    
+    int v1, tam;
+    int enc;
+
+    tam = arrIn2->size;
+    if(arrIn1->size <= arrIn2->size ){
+        tam = arrIn1->size;
+    }
+
+    arrOut->pdata = (int *)malloc( sizeof(int) * tam );
+    arrOut->size = 0;
+
+    for (int i = 0; i= < arrIn1->size; i++){
+        
+    }
 }
 
 void freeMemory(struct array *arr1, struct array *arr2, struct array *arr3)
