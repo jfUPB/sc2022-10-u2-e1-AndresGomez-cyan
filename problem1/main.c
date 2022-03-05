@@ -51,7 +51,6 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
 {
     int v1, tam;
     int enc;
-
     tam = arrIn2->size;
     if(arrIn1->size <= arrIn2->size ){
         tam = arrIn1->size;
@@ -63,7 +62,7 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
     for (int i = 0; i= < arrIn1->size; i++){
         v1 = arrIn1->pdata[i];
 
-        for(int j = 0; j < arrIn2->size;j++){
+        for (int i = 0; i < arrIn1->size; i++ ){
             if ( v1 == arrIn2->pdata[j] ){
                 enc = 0;
                 for ( int k =0; k< arrOut->size && enc == 0; k++ ){
