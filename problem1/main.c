@@ -59,10 +59,10 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
     arrOut->pdata = (int *)malloc( sizeof(int) * tam );
     arrOut->size = 0;
 
-    for (int i = 0; i= < arrIn1->size; i++){
+    for (int i = 0; i <= arrIn1->size; i++){
         v1 = arrIn1->pdata[i];
 
-        for (int i = 0; i < arrIn1->size; i++ ){
+        for (int j = 0; j < arrIn2->size; j++ ){
             if ( v1 == arrIn2->pdata[j] ){
                 enc = 0;
                 for ( int k =0; k< arrOut->size && enc == 0; k++ ){
