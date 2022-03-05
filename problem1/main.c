@@ -7,6 +7,8 @@
 #else
 #define LOG(...)
 #endif
+int TAM = 0;
+int *DATOS;
 
 struct array
 {
@@ -36,14 +38,12 @@ void printArray(struct array *parr)
 
 void getArray(struct array *parr)
 {
-    printf("Cantidad elementos");
-    scanf("%d",&parr->size);
+    parr->size = TAM;
 
     parr->pdata = (int *)malloc( sizeof(int) * parr->size );
 
-    for (int i = 0; i< parr->size; i++){
-        printf("Elemento[%d]: ", i );
-        scanf("%d", &parr->pdata[i]);
+    for (int i = 0; i < parr->size; i++ ){
+        parr->pdata[i] = DATOS[i];
     }
 }
 
@@ -51,29 +51,32 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
 {
     int v1, tam;
     int enc;
+
     tam = arrIn2->size;
-    if(arrIn1->size <= arrIn2->size ){
+
+    if( arrIn1->size <= arrIn2->size ){
         tam = arrIn1->size;
     }
 
     arrOut->pdata = (int *)malloc( sizeof(int) * tam );
     arrOut->size = 0;
 
-    for (int i = 0; i <= arrIn1->size; i++){
+    for (int i = 0; i < arrIn1->size; i++ ){
         v1 = arrIn1->pdata[i];
 
-        for (int j = 0; j < arrIn2->size; j++ ){
-            if ( v1 == arrIn2->pdata[j] ){
+        for(int j = 0; j < arrIn2->size; j++){
+            if( v1 == arrIn2->pdata[j] ){
                 enc = 0;
-                for ( int k =0; k< arrOut->size && enc == 0; k++ ){
+                for( int k = 0; k < arrOut->size && enc == 0; k++ ){
                     if( v1 == arrOut->pdata[k] ){
                         enc = 1;
                     }
                 }
-                if (enc == 0 ){
+                if( enc == 0 ){
                     arrOut->pdata[arrOut->size] = v1;
                     arrOut->size++;
                 }
+
             }
         }
     }
