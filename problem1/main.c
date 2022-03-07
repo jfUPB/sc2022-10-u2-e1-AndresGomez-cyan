@@ -7,8 +7,6 @@
 #else
 #define LOG(...)
 #endif
-int TAM = 0;
-int *DATOS;
 
 struct array
 {
@@ -38,10 +36,27 @@ void printArray(struct array *parr)
 
 void getArray(struct array *parr)
 {
+    int TAM = 0;
+    int *DATOS;
+    int success;
+
+   char commandBuf2[64];
+
+    if (fgets(commandBuf2, sizeof(commandBuf2), stdin) != NULL){
+        commandBuf2[strlen(commandBuf2) - 1] = 0;
+        success = sscanf( commandBuf2, "%d", &TAM );
+        DATOS = (int *)malloc( sizeof(int) * TAM );
+
+        for( int i = 0; i <TAM; i++ ){
+            if (fgets(commandBuf2, sizeof(commandBuf2), stdin) != NULL){
+                commandBuf2[strlen(commandBuf2) - 1] = 0;
+                success = sscanf( commandBuf2 , "%d",  &DATOS[i]);
+            }
+        }
+    }
+
     parr->size = TAM;
-
     parr->pdata = (int *)malloc( sizeof(int) * parr->size );
-
     for (int i = 0; i < parr->size; i++ ){
         parr->pdata[i] = DATOS[i];
     }
@@ -53,7 +68,6 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
     int enc;
 
     tam = arrIn2->size;
-
     if( arrIn1->size <= arrIn2->size ){
         tam = arrIn1->size;
     }
@@ -66,12 +80,14 @@ void arrayCommon(struct array *arrIn1, struct array *arrIn2, struct array *arrOu
 
         for(int j = 0; j < arrIn2->size; j++){
             if( v1 == arrIn2->pdata[j] ){
+                
                 enc = 0;
                 for( int k = 0; k < arrOut->size && enc == 0; k++ ){
                     if( v1 == arrOut->pdata[k] ){
                         enc = 1;
                     }
                 }
+
                 if( enc == 0 ){
                     arrOut->pdata[arrOut->size] = v1;
                     arrOut->size++;
